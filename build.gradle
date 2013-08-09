@@ -1,0 +1,25 @@
+allprojects {
+  apply plugin: 'idea'
+}
+
+apply from: 'jacoco.gradle'
+
+subprojects {
+  apply plugin: 'groovy'
+
+  repositories {
+    mavenCentral()
+  }
+
+  dependencies {
+    groovy 'org.codehaus.groovy:groovy-all:2.1.2'
+    testCompile('junit:junit:4.10'){ 
+      exclude group: 'org.hamcrest' 
+    }
+  }
+}
+
+def gradleVers = '1.7'
+task wrapper(type: Wrapper) {  
+  gradleVersion = gradleVers 
+}
